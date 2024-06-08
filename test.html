@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heat Input Welding Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: #6c63ff;
+            color: white;
+            padding: 10px 0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        nav ul li a:hover {
+            background: #5753c9;
+            border-radius: 5px;
+        }
+
+        .hero {
+            background: url('hero.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .hero h2 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+
+        .btn {
+            background: #6c63ff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #5753c9;
+        }
+
+        .calculator {
+            background: white;
+            padding: 50px 0;
+        }
+
+        .calculator form {
+            display: grid;
+            gap: 10px;
+        }
+
+        .calculator label {
+            font-weight: bold;
+        }
+
+        .calculator input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .calculator #result {
+            margin-top: 20px;
+        }
+
+        .about {
+            background: #f4f4f9;
+            padding: 50px 0;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Heat Input Welding Calculator</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#calculator">Calculator</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Welcome to the Heat Input Welding Calculator</h2>
+                <p>Your tool for accurate welding calculations.</p>
+                <a href="#calculator" class="btn">Get Started</a>
+            </div>
+        </section>
+        <section id="calculator" class="calculator">
+            <div class="container">
+                <h2>Calculator</h2>
+                <form id="heat-input-form">
+                    <label for="voltage">Voltage (V):</label>
+                    <input type="number" id="voltage" name="voltage" required>
+                    
+                    <label for="current">Current (A):</label>
+                    <input type="number" id="current" name="current" required>
+                    
+                    <label for="speed">Welding Speed (mm/min):</label>
+                    <input type="number" id="speed" name="speed" required>
+                    
+                    <button type="submit" class="btn">Calculate</button>
+                </form>
+                <div id="result">
+                    <h3>Heat Input:</h3>
+                    <p id="heat-input-value">Please enter values to calculate.</p>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="about">
+            <div class="container">
+                <h2>About</h2>
+                <p>This tool helps you calculate the heat input in welding processes, ensuring precision and accuracy in your work.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Heat Input Welding Calculator. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('heat-input-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const voltage = parseFloat(document.getElementById('voltage').value);
+            const current = parseFloat(document.getElementById('current').value);
+            const speed = parseFloat(document.getElementById('speed').value);
+
+            if (isNaN(voltage) || isNaN(current) || isNaN(speed)) {
+                alert('Please enter valid numbers');
+                return;
+            }
+
+            const heatInput = (voltage * current * 60) / speed;
+
+            document.getElementById('heat-input-value').innerText = `${heatInput.toFixed(2)} J/mm`;
+        });
+    </script>
+</body>
+</html>
